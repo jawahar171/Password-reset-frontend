@@ -1,0 +1,174 @@
+/* ─────────────────────────────────────────────
+   App.css  —  Global Styles
+   Uses Sora for headings, DM Sans for body
+───────────────────────────────────────────── */
+
+/* ── Root font setup ─────────────────────── */
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: #f0f2f8;
+  color: #2d3748;
+}
+
+h1, h2, h3, h4, h5, .brand-font {
+  font-family: "Sora", sans-serif;
+}
+
+/* ── Page wrapper: full-height centred card layout ── */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #e8eaf6 0%, #f0f2f8 50%, #e3f2fd 100%);
+}
+
+/* ── Auth card ───────────────────────────── */
+.auth-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(26, 35, 126, 0.10);
+  padding: 2.5rem 2rem;
+  width: 100%;
+}
+
+/* ── Card header icon circle ─────────────── */
+.auth-icon-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+.auth-icon-circle i {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+/* ── Primary button ──────────────────────── */
+.btn-primary-custom {
+  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  border: none;
+  color: #ffffff;
+  font-family: "Sora", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  width: 100%;
+}
+.btn-primary-custom:hover:not(:disabled) {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  color: #ffffff;
+}
+.btn-primary-custom:active {
+  transform: translateY(0);
+}
+.btn-primary-custom:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* ── Input group styling ─────────────────── */
+.form-control {
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-control:focus {
+  border-color: #3949ab;
+  box-shadow: 0 0 0 3px rgba(57, 73, 171, 0.12);
+}
+.input-group .form-control {
+  border-radius: 0 10px 10px 0;
+}
+.input-group-text {
+  background: #eef0fb;
+  border: 1.5px solid #e2e8f0;
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  color: #3949ab;
+  font-size: 1rem;
+}
+
+/* ── Alert overrides ─────────────────────── */
+.alert {
+  border-radius: 12px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.alert i {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Link colour ─────────────────────────── */
+a {
+  color: #3949ab;
+  text-decoration: none;
+  font-weight: 500;
+}
+a:hover {
+  color: #1a237e;
+  text-decoration: underline;
+}
+
+/* ── Navbar custom ───────────────────────── */
+.navbar-custom {
+  background: linear-gradient(90deg, #1a237e 0%, #283593 100%);
+  box-shadow: 0 2px 12px rgba(26, 35, 126, 0.18);
+}
+
+/* ── Password strength bar ───────────────── */
+.strength-bar {
+  height: 5px;
+  border-radius: 3px;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* ── Dashboard profile card ──────────────── */
+.profile-field {
+  background: #f7f8fc;
+  border: 1.5px solid #e8eaf6;
+  border-radius: 12px;
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.profile-field i {
+  color: #3949ab;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* ── Spinner overlay ─────────────────────── */
+.verify-spinner {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* ── Fade-in animation ───────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+  animation: fadeInUp 0.45s ease both;
+}
