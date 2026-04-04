@@ -8,7 +8,7 @@ import axios from "axios";
 
 // Base URL — "proxy" in package.json forwards /api/* to localhost:5000
 // In production, set REACT_APP_API_URL in a .env file
-const BASE_URL = process.env.REACT_APP_API_URL || "";
+const BASE_URL = process.env.REACT_APP_API_URL || "https://password-reset-backend-fsr0.onrender.com";
 
 // Create a reusable Axios instance
 const api = axios.create({
