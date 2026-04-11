@@ -15,16 +15,23 @@ function Register() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const validate = () => {
+    if (!form.username.trim()) return "Username is required.";
+    if (form.username.trim().length < 2) return "Username must be at least 2 characters.";
+    if (!form.email.trim()) return "Email is required.";
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) return "Please enter a valid email.";
+    if (!form.password) return "Password is required.";
+    if (form.password.length < 6) return "Password must be at least 6 characters.";
+    return null;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.username.trim() || !form.email.trim() || !form.password)
-      return setAlert({ type: "danger", message: "All fields are required." });
-    if (form.password.length < 6)
-      return setAlert({ type: "danger", message: "Password must be at least 6 characters." });
+    const error = validate();
+    if (error) return setAlert({ type: "danger", message: error });
 
     setLoading(true);
     setAlert({ type: "", message: "" });
-
     try {
       const { data } = await registerUser(form);
       localStorage.setItem("token", data.token);
@@ -50,7 +57,7 @@ function Register() {
                 <div className="auth-icon-circle">
                   <i className="bi bi-person-plus-fill"></i>
                 </div>
-                <h2 className="fw-bold mb-1" style={{ color: "#1a237e" }}>Create Account</h2>
+                <h2 className="fw-bold mb-1">Create Account</h2>
                 <p className="text-muted" style={{ fontSize: "0.9rem" }}>
                   Join us — it only takes a minute.
                 </p>
@@ -59,7 +66,6 @@ function Register() {
               <Alert type={alert.type} message={alert.message} />
 
               <form onSubmit={handleSubmit} noValidate>
-
                 <div className="mb-3">
                   <label className="form-label fw-semibold" style={{ fontSize: "0.9rem" }}>
                     Username
@@ -67,15 +73,9 @@ function Register() {
                   <div className="input-group">
                     <span className="input-group-text"><i className="bi bi-person"></i></span>
                     <input
-                      type="text"
-                      name="username"
-                      className="form-control"
-                      placeholder="Your name"
-                      value={form.username}
-                      onChange={handleChange}
-                      required
-                      autoFocus
-                      autoComplete="username"
+                      type="text" name="username" className="form-control"
+                      placeholder="Your name" value={form.username}
+                      onChange={handleChange} required autoFocus autoComplete="username"
                     />
                   </div>
                 </div>
@@ -87,14 +87,9 @@ function Register() {
                   <div className="input-group">
                     <span className="input-group-text"><i className="bi bi-envelope"></i></span>
                     <input
-                      type="email"
-                      name="email"
-                      className="form-control"
-                      placeholder="you@example.com"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      autoComplete="email"
+                      type="email" name="email" className="form-control"
+                      placeholder="you@example.com" value={form.email}
+                      onChange={handleChange} required autoComplete="email"
                     />
                   </div>
                 </div>
@@ -106,25 +101,21 @@ function Register() {
                   <div className="input-group">
                     <span className="input-group-text"><i className="bi bi-lock"></i></span>
                     <input
-                      type={showPass ? "text" : "password"}
-                      name="password"
-                      className="form-control"
-                      placeholder="Min 6 characters"
-                      value={form.password}
-                      onChange={handleChange}
-                      required
-                      minLength={6}
-                      autoComplete="new-password"
+                      type={showPass ? "text" : "password"} name="password"
+                      className="form-control" placeholder="Min 6 characters"
+                      value={form.password} onChange={handleChange}
+                      required minLength={6} autoComplete="new-password"
                     />
                     <button
-                      type="button"
-                      className="btn btn-outline-secondary"
+                      type="button" className="btn btn-outline-secondary"
                       style={{ borderRadius: "0 10px 10px 0", borderLeft: "none" }}
-                      onClick={() => setShowPass(!showPass)}
-                      tabIndex={-1}
+                      onClick={() => setShowPass(!showPass)} tabIndex={-1}
                     >
                       <i className={`bi bi-eye${showPass ? "-slash" : ""}`}></i>
                     </button>
+                  </div>
+                  <div style={{ fontSize: "0.8rem", color: "#6c757d", marginTop: "4px" }}>
+                    Must be at least 6 characters.
                   </div>
                 </div>
 
