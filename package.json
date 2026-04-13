@@ -15,7 +15,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build"
   },
-  "proxy": "https://password-reset-backend-fsr0.onrender.com",
   "browserslist": {
     "production": [
       ">0.2%",
